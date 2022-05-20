@@ -1,0 +1,30 @@
+#API Call Test for Weather Program#
+
+import json
+from pip._vendor import requests
+
+api_token = '81ab2c5b7610ea0509218bc424ec2ec5'
+api_url_base = 'https://api.openweathermap.org/'
+
+zip_code = input("What is your zip code?")
+
+url = 'https://api.openweathermap.org/data/2.5/weather?zip='+zip_code+',&appid=81ab2c5b7610ea0509218bc424ec2ec5&units=imperial'
+headers = {'Accept' : '81ab2c5b7610ea0509218bc424ec2ec5'}
+r = requests.get(url, headers=headers)
+print(f"Status code: {r.status_code}")
+response_dict = r.json()
+print(response_dict.keys())
+
+print(f"Current Weather for {response_dict['name']}: \n{response_dict['weather'][0]['main']}")
+print(f"Description: {response_dict['weather'][0]['description']}")
+print(f"Temperature: {response_dict['main']['temp']} Degrees Farenheit")
+print(f"Feels Like: {response_dict['main']['feels_like']} Degrees Farenheit")
+print(f"Humidity: {response_dict['main']['humidity']}%")
+
+lon = str(response_dict['coord']['lon'])
+lat = str(response_dict['coord']['lat'])
+
+fiveday_url = 'https://api.openweathermap.org/data/2.5/forecast?lat='+lat+'&lon='+lon+'&appid=81ab2c5b7610ea0509218bc424ec2ec5&units=imperial'
+headers = {'Accept' : '81ab2c5b7610ea0509218bc424ec2ec5'}
+r2 = requests.get(fiveday_url, headers=headers)
+response_dict2 = r2.json()
