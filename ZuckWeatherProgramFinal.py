@@ -39,7 +39,7 @@ def display_weather_info_hourly_zip(user_zip_code):
     response_dict3 = r3.json()
     for _ in range(24):
         print("")
-        print(f"Hourly Weather for {response_dict5['name']}: \n{response_dict3['hourly'][_]['weather'][0]['main']}")
+        print(f"Hourly Weather for {response_dict5['name']} for Hour "+str(_+1)+f": \n{response_dict3['hourly'][_]['weather'][0]['main']}")
         print(f"Description: {response_dict3['hourly'][_]['weather'][0]['description']}.")
         print(f"Temperature: {response_dict3['hourly'][_]['temp']} Degrees Farenheit.")
         print(f"Feels Like: {response_dict3['hourly'][_]['feels_like']} Degrees Farenheit.")
@@ -50,7 +50,7 @@ def display_weather_info_hourly_zip(user_zip_code):
         for _ in range(_):
             print(f"Weather Alerts for {response_dict5['name']}:\n{response_dict3['alerts'][_]['event']}.")
             print(f"Sender: {response_dict3['alerts'][_]['sender_name']}")
-            print(f"Description: \n {response_dict3['alerts'][_]['description']}\n.")
+            print(f"Description: \n{response_dict3['alerts'][_]['description']}\n.")
     except IndexError:
         print("")
     except KeyError:
@@ -93,7 +93,7 @@ def display_weather_info_daily_zip(user_zip_code):
         for _ in range(_): 
             print(f"Weather Alerts for {response_dict5['name']}:\n{response_dict3['alerts'][_]['event']}.")
             print(f"Sender: {response_dict3['alerts'][_]['sender_name']}")
-            print(f"Description: \n {response_dict3['alerts'][_]['description']}\n.")
+            print(f"Description: \n{response_dict3['alerts'][_]['description']}\n.")
     except IndexError:
         print("")
     except KeyError:
@@ -172,7 +172,7 @@ def display_weather_info_hourly_city(user_city):
     response_dict3 = r3.json()
     for _ in range(24):
         print("")
-        print(f"Hourly Weather for {response_dict2['name']}: \n{response_dict3['hourly'][_]['weather'][0]['main']}")
+        print(f"Hourly Weather for {response_dict2['name']} for Hour "+str(_+1)+f": \n{response_dict3['hourly'][_]['weather'][0]['main']}")
         print(f"Description: {response_dict3['hourly'][_]['weather'][0]['description']}.")
         print(f"Temperature: {response_dict3['hourly'][_]['temp']} Degrees Farenheit.")
         print(f"Feels Like: {response_dict3['hourly'][_]['feels_like']} Degrees Farenheit.")
@@ -183,7 +183,7 @@ def display_weather_info_hourly_city(user_city):
         for _ in range(_):
             print(f"Weather Alerts for {response_dict2['name']}:\n{response_dict3['alerts'][_]['event']}.")
             print(f"Sender: {response_dict3['alerts'][_]['sender_name']}")
-            print(f"Description: \n {response_dict3['alerts'][_]['description']}\n.")
+            print(f"Description: \n{response_dict3['alerts'][_]['description']}\n.")
             print("")
     except IndexError:
         print("")
@@ -227,7 +227,7 @@ def display_weather_info_daily_city(user_city):
         for _ in range(_): 
             print(f"Weather Alerts for {response_dict2['name']}:\n{response_dict3['alerts'][_]['event']}.")
             print(f"Sender: {response_dict3['alerts'][_]['sender_name']}")
-            print(f"Description: \n {response_dict3['alerts'][_]['description']}\n.")
+            print(f"Description: \n{response_dict3['alerts'][_]['description']}\n.")
             print("")
     except IndexError:
         print("")
@@ -273,7 +273,7 @@ def display_weather_info_5day_city(user_city):
 
 msg = "Welcome to your local weather forecast program!"
 print(msg)
-print("This is a service that will show you your local weather forecast based on zip code or city name. ")
+print("This is a service that will show you your local weather forecast based on a zip code or a city name within the United States. ")
 
 def main():
 
@@ -285,6 +285,7 @@ def main():
         if user_decision == 'city name':
             break
         if user_decision == 'q':
+            print("Thank you for using this service! Goodbye!")
             quit()
         if user_decision != 'zip code' or 'city name':
             print("Invalid input! Please try again!")
@@ -302,6 +303,7 @@ def main():
             else:
                 break      
         if user_zip_code == 'q':
+            print("Thank you for using this service! Goodbye!")
             quit()
 
     if user_decision == 'city name':
@@ -315,11 +317,12 @@ def main():
             else:
                 break
         if user_city == 'q':
+            print("Thank you for using this service! Goodbye!")
             quit()
 
     ##extended forecast##
 
-    print("Now that you've seen your current weather, would you like to see an extended forecast? \nYou may select from 'hourly', 'daily', or '5 day'. \nPress 'q' to quit.")
+    print("Now that you've seen your current weather, would you like to see an extended forecast? \nYou may select from 'hourly', 'daily', or '5 day'.\nHourly will show you an hourly forecast for the next 24 hours. \nDaily will show you a daily forecast for the next 7 days. \nA 5 Day forecast will break down the forecast every three hours for the next five days. \nPress 'q' to quit.")
     extended_forecast=input()
 
     while True:
@@ -330,6 +333,7 @@ def main():
         if extended_forecast == '5 day':
             break
         if extended_forecast == 'q':
+            print("Thank you for using this service! Goodbye!")
             quit()
         if extended_forecast != 'hourly' or 'daily' or '5 day' or 'q':
             print("Invalid input. Please try again!")
@@ -357,7 +361,7 @@ def main():
 
     ##extended forecast 2##
 
-    print("Would you like to see an extended forecast again? \nYou may select from 'hourly' 'daily' or '5 day'. \n Press 'q' to quit.")
+    print("Would you like to see an extended forecast again? \nYou may select from 'hourly' 'daily' or '5 day'. \nPress 'q' to quit.")
     decision2=input()
 
     while True:
@@ -368,6 +372,7 @@ def main():
         if decision2 == '5 day':
             break
         if decision2 == 'q':
+            print("Thank you for using this service! Goodbye!")
             quit()
         if decision2 != 'hourly' or 'daily' or '5 day' or 'q':
             print("Invalid input. Please try again!")
@@ -396,7 +401,7 @@ def main():
     ##final extended forecast##
 
     print("Would you like to see an extended forecast a final time?")
-    print("You may select from 'hourly' 'daily' or '5 day'. ")
+    print("You may select from 'hourly' 'daily' or '5 day'. \nPress 'q' to quit.")
     decision3=input()
 
     while True:
@@ -407,6 +412,7 @@ def main():
         if decision3 == '5 day':
             break
         if decision3 == 'q':
+            print("Thank you for using this service! Goodbye!")
             quit()
         if decision3 != 'daily' or '5 day' or 'q':
             print("Invalid input. Please try again!")
